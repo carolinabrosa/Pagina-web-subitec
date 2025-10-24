@@ -6,167 +6,102 @@
   <title>SUBITEC — Gestión integral para mantenimiento de ascensores</title>
   <meta name="description" content="SUBITEC: software de gestión para empresas de mantenimiento de ascensores. Reclamos → OT → asignación → ejecución en sitio → firma → historial por ascensor." />
   <style>
-    /* =====================
-       Paleta (exacta)
-       ===================== */
-    :root {
-      --psc-yellow: #fcca53;   /* amarillo pscurp */
-      --logo-brown: #694e35;   /* marrón logo */
-      --gray-brown: #5e4c1e;   /* marrón gris */
-      --beige: #f4ead0;        /* beige claro */
-      --cream: #fffbf6;        /* blanco cremita */
-      --light-yellow: #ffe5a5; /* amarillo clarito */
-      --brown: #bda386;        /* marrón */
-      --light-brown:  #d4caaf;  /* marrón clarito */
+ /* =====================
+   Paleta (exacta)
+   ===================== */
+:root {
+  --psc-yellow: #fcca53;   /* amarillo pscurp */
+  --logo-brown: #694e35;   /* marrón logo */
+  --gray-brown: #5e4c1e;   /* marrón gris */
+  --beige: #f4ead0;        /* beige claro */
+  --cream: #fffbf6;        /* blanco cremita */
+  --light-yellow: #ffe5a5; /* amarillo clarito */
+  --brown: #bda386;        /* marrón */
+  --light-brown:  #d4caaf; /* marrón clarito */
 
-      /* Metal para puertas (grises) */
-      --metal-light: #e3e3e3;
-      --metal-mid:   #cfcfcf;
-      --metal-dark:  #b7b7b7;
+  /* Metal para puertas (grises) */
+  --metal-light: #e3e3e3;
+  --metal-mid:   #cfcfcf;
+  --metal-dark:  #b7b7b7;
 
-      --text: #2a2418;         /* texto principal (derivado para contraste) */
-      --muted: #4b4334;
+  --text: #2a2418;         /* texto principal (derivado para contraste) */
+  --muted: #4b4334;
 
-      /* Tipografía base */
-      --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-     --font-slogan: "Arial MT Pro", Arial, Helvetica, sans-serif;
-      /* Para la animación del ascensor */
-      --open: 0; /* 0 → 1 (0% a 100% abierto) — controlado por JS en scroll */
-    }
+  /* Tipografía base */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-slogan: "Arial MT Pro", Arial, Helvetica, sans-serif;
 
-    html, body {
-      height: 100%;
-      scroll-behavior: smooth;
-      background: var(--cream);
-      color: var(--text);
-      font-family: var(--font-sans);
-      line-height: 1.45;
-    }
+  /* Para la animación del ascensor */
+  --open: 0; /* 0 → 1 (0% a 100% abierto) — controlado por JS en scroll */
+}
 
-    /* Accesibilidad: link para saltar navegación */
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: auto;
-      width: 1px; height: 1px;
-      overflow: hidden;
-    }
-    .skip-link:focus {
-      left: 1rem; top: 1rem;
-      width: auto; height: auto;
-      background: var(--psc-yellow);
-      color: #111;
-      padding: .5rem .75rem;
-      border-radius: .5rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,.15);
-      z-index: 10000;
-    }
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  background: var(--cream);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.45;
+}
 
-    /* Navegación sticky */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: color-mix(in oklab, var(--cream) 90%, white 10%);
-      border-bottom: 1px solid var(--light-brown);
-      backdrop-filter: blur(6px);
-    }
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: .75rem 1rem;
-    }
-    .brand-mini {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      text-decoration: none;
-      color: var(--logo-brown);
-      font-weight: 700;
-    }
-    .brand-mini svg { height: 24px; }
-    nav ul {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .25rem .5rem;
-      list-style: none;
-      padding: 0; margin: 0;
-    }
-    nav a {
-      display: inline-block;
-      padding: .45rem .7rem;
-      border-radius: .6rem;
-      text-decoration: none;
-      color: var(--muted);
-    }
-    nav a:focus, nav a:hover {
-      outline: 2px solid transparent;
-      background: var(--light-yellow);
-      color: #1b140a;
-    }
+/* Accesibilidad: link para saltar navegación */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem; top: 1rem;
+  width: auto; height: auto;
+  background: var(--psc-yellow);
+  color: #111;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+  z-index: 10000;
+}
 
-    /* Hero */
-   /* ---------- HERO (layout + estilos) ---------- */
+/* Paleta mínima usada acá (dejá tus :root si ya los tenés) */
+:root{
+  --psc-yellow:#fcca53; --logo-brown:#694e35; --gray-brown:#5e4c1e;
+  --beige:#f4ead0; --cream:#fffbf6; --light-brown:#d4caaf;
+}
 
-/* === HERO (centrado columna + widget lateral) === */
-/* === HERO (grid: izquierda contenido centrado, derecha cards) === */
+/* ===== HERO ===== */
+/* HERO */
 .hero{
   padding: 3rem 1rem 2.5rem;
   background: linear-gradient(180deg, var(--beige), var(--cream));
 }
-
 .hero-inner{
   max-width: 1100px;
   margin: 0 auto;
   padding-inline: clamp(16px, 4vw, 32px);
-
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-  column-gap: clamp(20px, 4vw, 40px);
-  row-gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 420px); /* texto | aside */
+  column-gap: clamp(24px, 4vw, 48px);
   align-items: start;
 }
 
-/* Logo y rayita ocupan todo el ancho y centrados */
-.logo{
+/* Columna izquierda (logo + textos) */
+.hero-left{
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  row-gap: 12px;
+}
+.hero-left .logo{
   height: clamp(96px, 14vw, 184px);
   display: block;
-  grid-column: 1 / -1;
-  justify-self: center;
 }
-.brand-line{
-  grid-column: 1 / -1;
-  justify-self: center;
+.hero-left .brand-line{
   width: 72px; height: 4px; border-radius: 4px;
-  margin: .75rem auto 1.25rem;
   background: var(--psc-yellow);
   box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  margin: .25rem 0 .5rem;
 }
-
-/* Columna izquierda: bloque central, todo centrado */
-.center-col{
-  grid-column: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-/* Slogan (itálica, marrón) */
-.center-col h1{
-  font-family: var(--font-slogan);
-  font-style: italic;
-  color: var(--gray-brown);
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  letter-spacing: .02em;
-  margin: .25rem 0 .25rem;
-}
-
-/* Título principal centrado */
 .hero-title{
   color: var(--logo-brown);
   font-weight: 800;
@@ -174,18 +109,15 @@
   line-height: 1.15;
   letter-spacing: -0.01em;
   max-width: 26ch;
-  margin: .25rem auto 1rem;
+  margin: .25rem 0 .5rem;
 }
-
-/* Frase con subrayado amarillo pegado debajo */
 .lead{
   font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   font-weight: 600;
   color: var(--gray-brown);
   max-width: 36ch;
-  margin: .5rem auto 1.25rem;
+  margin: .25rem 0 1rem;
   text-wrap: balance;
-
   background-image: linear-gradient(var(--psc-yellow), var(--psc-yellow));
   background-repeat: no-repeat;
   background-size: 100% .28em;
@@ -193,28 +125,41 @@
   padding-bottom: .15em;
 }
 
-/* Botón centrado */
-.center-col .btn{ margin-top: .25rem; }
+/* Botón */
+.btn{
+  display:inline-block;
+  border:none;
+  border-radius:.8rem;
+  background: var(--psc-yellow);
+  color:#1b140a;
+  padding:.9rem 1.15rem;
+  font-weight:700;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  text-decoration:none;
+}
+.btn:focus-visible{ outline:3px solid #000; outline-offset:2px; }
 
-/* Columna derecha: cards */
+/* Columna derecha (cards) — centradas y sin desbordar */
 .hero-aside{
-  grid-column: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: 1fr;               /* una sola columna dentro del aside */
+  row-gap: clamp(18px, 2.2vw, 28px);        /* separación vertical */
+  justify-items: center;                    /* centra cada card */
   align-content: start;
+  margin-top: clamp(16px, 6vw, 80px);       /* baja el bloque de cards */
 }
 .mini-card{
+  width: min(360px, 100%);                  /* nunca supera el ancho del aside */
   background:#fff;
   border:1px solid var(--light-brown);
   border-radius:16px;
   box-shadow:0 12px 30px rgba(0,0,0,.08);
   padding:14px 16px;
-  text-align: left;
+  text-align:left;
 }
 .mini-card .pill{
   display:inline-block;
-  font:700 .74rem/1 var(--font-sans);
+  font:700 .74rem/1 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial;
   color:var(--logo-brown);
   background:#ffe5a5;
   border:1px solid #f4d58a;
@@ -234,32 +179,24 @@
 }
 .mini-card li{ margin:.25rem 0; }
 
-/* Mobile/Tablet: todo en una columna, cards debajo */
+/* Mobile: todo apilado */
 @media (max-width: 900px){
-  .hero-inner{ grid-template-columns: 1fr; }
-  .center-col{ grid-column: 1; }
+  .hero-inner{
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
   .hero-aside{
-    grid-column: 1;
-    grid-template-columns: 1fr; /* una debajo de la otra */
+    margin-top: 16px;
   }
 }
 
+/* util opcional */
+.visually-hidden{
+  position:absolute !important;
+  left:-9999px !important;
+  opacity:0 !important;
+}
 
-
-    .btn {
-      appearance: none;
-      display: inline-block;
-      border: none;
-      border-radius: .8rem;
-      background: var(--psc-yellow);
-      color: #1b140a;
-      padding: .9rem 1.15rem;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 6px 16px rgba(0,0,0,.12);
-    }
-    .btn:focus-visible { outline: 3px solid #000; outline-offset: 2px; }
 
     /* Sección Ascensor (animación) */
     .elevator-wrapper {
@@ -305,13 +242,6 @@
       background: rgba(0,0,0,.25);
       z-index: 2;
     }
-
-:root{
-  --brand-brown: #6b4a2f;   /* marrón del título */
-  --text-brown:  #3f3324;   /* texto normal */
-  --glow-core:   #ffb63b;
-  --glow-mid:    #ff9e00;
-}
 
 /* ===== ASCENSOR (bloque centrado) ===== *
 /* Título marrón */
@@ -503,12 +433,10 @@
   padding: clamp(20px, 5vw, 56px) 1rem;
   background: linear-gradient(180deg, var(--cream, #fffbf6), var(--beige, #f4ead0));
 }
-
 .tech-wrap{
   max-width: 1400px;
   margin: 0 auto;
 }
-
 .tech-title{
   margin: 0 0 clamp(14px, 2.2vw, 24px);
   font-weight: 800;
@@ -740,11 +668,7 @@
 }
 
 /* responsive */
-@media (max-width: 840px){
-  .footer-inner{
-    grid-template-columns: 1fr 1fr;
-  }
-}
+
 @media (max-width: 560px){
   .footer-inner{
     grid-template-columns: 1fr;
@@ -753,10 +677,7 @@
 }
 
 
-    /* Responsivo fino */
-    @media (min-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-    }
+ 
 
     /* Modo reduce motion: puertas ya abiertas, sin JS/animación */
     @media (prefers-reduced-motion: reduce) {
@@ -815,102 +736,84 @@
   color: var(--logo-brown); /* #694e35 */
 }
 
-/* layout: título + widget al costado */
-.hero-head{
-  display:grid;
-  grid-template-columns: 1fr minmax(280px, 420px);
-  gap: clamp(16px, 3vw, 28px);
-  align-items:start;
-  margin-top:.5rem;
-}
-.hero-copy h2{ max-width: 28ch; margin: 0; }
-
-@media (max-width: 900px){
-  .hero-head{ grid-template-columns: 1fr; }
-}
-
-/* widget lateral */
-.hero-aside{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:16px;
-}
-@media (max-width: 480px){
-  .hero-aside{ grid-template-columns: 1fr; }
-}
-
-.mini-card{
-  background:#fff;
-  border:1px solid var(--light-brown);
-  border-radius:16px;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
-  padding:14px 16px;
-}
-.mini-card .pill{
-  display:inline-block;
-  font:700 .74rem/1 var(--font-sans);
-  color:var(--logo-brown);
-  background:#ffe5a5;
-  border:1px solid #f4d58a;
-  padding:.35rem .55rem;
-  border-radius:999px;
-  margin-bottom:.6rem;
-}
-.mini-card h3{
-  font-size:1.05rem;
-  color:var(--logo-brown);
-  margin:0 0 .35rem;
-}
-.mini-card ul{
-  margin:0; padding-left:1.1rem;
-  color:var(--gray-brown);
-  font-size:.95rem;
-}
-.mini-card li{ margin:.25rem 0; }
-
-/* Contenedor del hero centrado (por si falta) */
-.hero-inner{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-inline: clamp(16px, 4vw, 32px);
-}
-
-/* Grid principal: izquierda (texto) / derecha (widget) */
-.hero-grid{
-  display: grid;
-  grid-template-columns: minmax(420px, 1fr) minmax(280px, 420px);
-  gap: clamp(20px, 4vw, 40px);
-  align-items: start;
-  margin-top: clamp(8px, 2vw, 16px);
-}
-
-/* Asegurar que todo el texto esté alineado y con aire controlado */
-.hero-copy h1{ margin: 0 0 .25rem; }
-.hero-copy h2{ margin: .25rem 0 .5rem; max-width: 28ch; }
-.hero-copy .lead{ margin: .5rem 0 1rem; }
-.hero-copy .btn{ margin-top: .25rem; }
-
-/* Responsive: en mobile todo apilado (widget debajo) */
-@media (max-width: 900px){
-  .hero-grid{
-    grid-template-columns: 1fr;
+  /* ====== Header / Nav ====== */
+  header{
+    position:sticky; top:0; z-index:999;
+    background: color-mix(in oklab, var(--cream) 90%, white 10%);
+    border-bottom:1px solid var(--light-brown);
+    backdrop-filter: blur(6px);
   }
-}
+  .nav{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    max-width:1100px; margin:0 auto; padding:.75rem 1rem;
+    position:relative; /* para posicionar el dropdown en mobile */
+  }
+  .brand-mini{
+    display:inline-flex; align-items:center; gap:.5rem; font-weight:700; color:var(--logo-brown);
+  }
+  .brand-mini svg{height:24px; width:auto; display:block}
 
-/* (Opcional) centrá la línea amarilla bajo el logo sin que mueva la grid */
-.brand-line{
-  margin: .75rem auto 1.25rem;
-}
+  /* Botón hamburguesa (se muestra en mobile) */
+  .nav-toggle{
+    appearance:none; border:0; background:transparent; cursor:pointer;
+    width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+  }
+  .nav-toggle:focus-visible{ outline:3px solid #000; outline-offset:2px }
+  .hamburger{ width:22px; height:2px; background:var(--logo-brown); border-radius:2px; position:relative }
+  .hamburger::before,.hamburger::after{
+    content:""; position:absolute; left:0; width:22px; height:2px; background:currentColor; border-radius:2px;
+  }
+  .hamburger::before{ top:-6px } .hamburger::after{ top:6px }
 
-  </style>
+  /* Menú */
+  nav[aria-label="Secciones del sitio"] ul{
+    list-style:none; padding:0; margin:0;
+    display:flex; gap:.25rem .5rem; flex-wrap:wrap;
+  }
+  nav a{
+    display:inline-block; padding:.45rem .7rem; border-radius:.6rem; color:var(--muted);
+  }
+  nav a:hover, nav a:focus-visible{ background:var(--light-yellow); color:#1b140a; outline:2px solid transparent }
+
+  /* Botón “Solicitar demo” (opcional) */
+  .btn{
+    display:inline-block; padding:.6rem .9rem; border-radius:.7rem; background:var(--light-yellow);
+    color:#694e35; font-weight:800; border:1px solid #f4d58a;
+  }
+  .btn:focus-visible{ outline:3px solid #000; outline-offset:2px }
+
+  /* ====== Responsive ====== */
+  /* Mobile: el menú es dropdown (oculto por defecto) */
+  @media (max-width: 900px){
+    /* Ocultar el menú por defecto con el atributo [hidden] */
+    nav[aria-label="Secciones del sitio"]{ width:100% }
+    nav[aria-label="Secciones del sitio"][data-mode="mobile"] ul{
+      position:absolute; left:0; right:0; top:calc(100% + 2px);
+      background: color-mix(in oklab, var(--cream) 92%, white 8%);
+      border-bottom:1px solid var(--light-brown);
+      box-shadow:0 10px 24px rgba(0,0,0,.06);
+      padding:.5rem; display:grid; grid-template-columns:1fr 1fr; gap:.25rem;
+      transform-origin: top center; transform:scaleY(0); opacity:0; pointer-events:none;
+    }
+    nav[aria-label="Secciones del sitio"][data-open="true"] ul{
+      transform:scaleY(1); opacity:1; pointer-events:auto;
+    }
+  }
+  /* Desktop: menú en línea, sin hamburguesa */
+  @media (min-width: 901px){
+    .nav-toggle{ display:none }
+    nav[aria-label="Secciones del sitio"]{ margin-left:auto; margin-right:1rem }
+  }
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#inicio">Saltar al contenido principal</a>
 
-  <header aria-label="Navegación principal">
-    <div class="nav">
-      <a href="#inicio" class="brand-mini" aria-label="Ir al inicio">
- <svg class="logo"
+<a class="skip-link" href="#inicio" style="position:absolute;left:-9999px">Saltar al contenido principal</a>
+
+<header aria-label="Navegación principal">
+  <div class="nav">
+    <a href="#inicio" class="brand-mini" aria-label="Ir al inicio">
+     <svg class="logo"
   role="img" aria-label="SUBITEC — Logo"
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="xMidYMid meet"
@@ -953,26 +856,76 @@
 </svg>
   </g>
 </svg>
-      </a>
-   <nav aria-label="Secciones del sitio">
-  <ul>
-    <li><a href="#ascensor">Ascensor</a></li>
-    <li><a href="#funciones">Funciones</a></li>
-    <li><a href="#vista-oficina">Vista de oficina</a></li>
-    <li><a href="#vista-tecnico">Vista de técnico</a></li>
-    <li><a href="#quienes">Quiénes somos</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-</nav>
-      <a class="btn" href="#contacto" aria-label="Ir a contacto para solicitar una demo">Solicitar demo</a>
-    </div>
-  </header>
 
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-inner">
+    <!-- Botón hamburguesa (controla el menú en mobile) -->
+    <button class="nav-toggle" aria-controls="menu-principal" aria-expanded="false" aria-label="Abrir menú">
+      <span class="hamburger"></span>
+    </button>
 
+    <!-- Menú -->
+    <nav id="menu-principal" aria-label="Secciones del sitio" data-mode="mobile" data-open="false">
+      <ul>
+        <li><a href="#ascensor">Ascensor</a></li>
+        <li><a href="#funciones">Funciones</a></li>
+        <li><a href="#vista-oficina">Vista de oficina</a></li>
+        <li><a href="#vista-tecnico">Vista de técnico</a></li>
+        <li><a href="#quienes">Quiénes somos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn" href="#contacto" aria-label="Ir a contacto para solicitar una demo">Solicitar demo</a>
+  </div>
+</header>
+<script>
+  // ====== Nav responsive accesible ======
+  const toggle = document.querySelector('.nav-toggle');
+  const nav    = document.querySelector('#menu-principal');
+
+  // Cambia a modo desktop/mobile según el ancho (para limpiar estados)
+  const mq = window.matchMedia('(min-width: 901px)');
+  function applyMode() {
+    if (mq.matches) {
+      nav.dataset.mode = 'desktop';
+      nav.dataset.open = 'true';                 // siempre visible en desktop
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Abrir menú');
+    } else {
+      nav.dataset.mode = 'mobile';
+      nav.dataset.open = 'false';                // oculto inicialmente en mobile
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Abrir menú');
+    }
+  }
+  applyMode();
+  mq.addEventListener ? mq.addEventListener('change', applyMode) : mq.addListener(applyMode);
+
+  // Toggle en mobile
+  toggle.addEventListener('click', () => {
+    const isOpen = nav.dataset.open === 'true';
+    nav.dataset.open = String(!isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
+  });
+
+  // Cerrar el menú al hacer click en un enlace (solo mobile)
+  nav.addEventListener('click', (e) => {
+    if (nav.dataset.mode === 'mobile' && e.target.matches('a')) {
+      nav.dataset.open = 'false';
+      toggle.setAttribute('aria-expanded','false');
+      toggle.setAttribute('aria-label','Abrir menú');
+    }
+  });
+</script>
+</body>
+</html>
     <!-- LOGO -->
-<svg class="logo"
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <!-- IZQUIERDA: logo + textos + botón -->
+    <div class="hero-left">
+          <svg class="logo"
   role="img" aria-label="SUBITEC — Logo"
   xmlns="http://www.w3.org/2000/svg"
   preserveAspectRatio="xMidYMid meet"
@@ -1015,13 +968,9 @@
 </svg>
   </g>
 </svg>
-
-    <!-- Columna izquierda: TODO centrado -->
-    <div class="center-col">
-      <h1 id="hero-title"></h1>
 
       <h2 class="hero-title">
-        <span class="headline-box">Sistema de gestión para empresas de mantenimiento de ascensores</span>
+        Sistema de gestión para empresas de mantenimiento de ascensores
       </h2>
 
       <p class="lead">Asignación de reclamos, simple y eficiente.</p>
@@ -1030,7 +979,7 @@
       <span id="cta-desc" class="visually-hidden">Abrir formulario de contacto para solicitar una demo</span>
     </div>
 
-    <!-- Columna derecha: widget lateral -->
+    <!-- DERECHA: tarjetas -->
     <aside class="hero-aside" aria-label="Vistas del sistema">
       <article class="mini-card">
         <span class="pill">Vista de Oficina</span>
@@ -1052,11 +1001,8 @@
         </ul>
       </article>
     </aside>
-
   </div>
 </section>
-
-
 
    <!-- =========================
          ASCENSOR (animación sticky)
@@ -1324,7 +1270,7 @@
     <div class="footer-col footer-contact">
       <h4>Contacto</h4>
       <p>
-        <a>subitec@gmail.com</a><br>
+        <a>+54 9 11 4044-7766</a><br>
         Buenos Aires, Argentina
       </p>
       <a class="footer-cta" href="#contacto">Solicitar demo</a>
@@ -1386,5 +1332,3 @@
   </script>
 </body>
 </html>
-
-
