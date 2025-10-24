@@ -737,73 +737,105 @@ html, body {
 }
 
   /* ====== Header / Nav ====== */
-  header{
-    position:sticky; top:0; z-index:999;
-    background: color-mix(in oklab, var(--cream) 90%, white 10%);
-    border-bottom:1px solid var(--light-brown);
-    backdrop-filter: blur(6px);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between; gap:1rem;
-    max-width:1100px; margin:0 auto; padding:.75rem 1rem;
-    position:relative; /* para posicionar el dropdown en mobile */
-  }
-  .brand-mini{
-    display:inline-flex; align-items:center; gap:.5rem; font-weight:700; color:var(--logo-brown);
-  }
-  .brand-mini svg{height:24px; width:auto; display:block}
+/* ===== Header / Nav ===== */
+header{
+  position: sticky; top: 0; z-index: 999;
+  background: color-mix(in oklab, var(--cream) 90%, white 10%);
+  border-bottom: 1px solid var(--light-brown);
+  backdrop-filter: blur(6px);
+}
+.nav{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: .75rem 1rem;
+  display: flex; align-items: center; gap: 1rem;
+  position: relative; /* para el dropdown en mobile */
+}
 
-  /* Botón hamburguesa (se muestra en mobile) */
-  .nav-toggle{
-    appearance:none; border:0; background:transparent; cursor:pointer;
-    width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
-  }
-  .nav-toggle:focus-visible{ outline:3px solid #000; outline-offset:2px }
-  .hamburger{ width:22px; height:2px; background:var(--logo-brown); border-radius:2px; position:relative }
-  .hamburger::before,.hamburger::after{
-    content:""; position:absolute; left:0; width:22px; height:2px; background:currentColor; border-radius:2px;
-  }
-  .hamburger::before{ top:-6px } .hamburger::after{ top:6px }
+/* Marca mini */
+.brand-mini{
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-weight: 800; color: var(--logo-brown);
+  text-decoration: none;                      /* ← quita subrayado */
+}
+.brand-mini svg, .brand-mini img{ height: 24px; width: auto; display: block }
 
-  /* Menú */
-  nav[aria-label="Secciones del sitio"] ul{
-    list-style:none; padding:0; margin:0;
-    display:flex; gap:.25rem .5rem; flex-wrap:wrap;
-  }
-  nav a{
-    display:inline-block; padding:.45rem .7rem; border-radius:.6rem; color:var(--muted);
-  }
-  nav a:hover, nav a:focus-visible{ background:var(--light-yellow); color:#1b140a; outline:2px solid transparent }
+/* Botón hamburguesa (solo mobile) */
+.nav-toggle{
+  appearance: none; border: 0; background: transparent; cursor: pointer;
+  width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center;
+}
+.nav-toggle:focus-visible{ outline: 3px solid #000; outline-offset: 2px }
+.hamburger{ width: 22px; height: 2px; background: var(--logo-brown); border-radius: 2px; position: relative }
+.hamburger::before, .hamburger::after{
+  content: ""; position: absolute; left: 0; width: 22px; height: 2px; background: currentColor; border-radius: 2px;
+}
+.hamburger::before{ top: -6px } .hamburger::after{ top: 6px }
 
-  /* Botón “Solicitar demo” (opcional) */
-  .btn{
-    display:inline-block; padding:.6rem .9rem; border-radius:.7rem; background:var(--light-yellow);
-    color:#694e35; font-weight:800; border:1px solid #f4d58a;
-  }
-  .btn:focus-visible{ outline:3px solid #000; outline-offset:2px }
+/* Menú */
+nav[aria-label="Secciones del sitio"] ul{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .25rem .5rem;
+}
+nav[aria-label="Secciones del sitio"] a{
+  display: inline-block;
+  padding: .45rem .7rem;
+  border-radius: .6rem;
+  color: var(--muted);
+  text-decoration: none;                      /* ← quita subrayado */
+}
+nav[aria-label="Secciones del sitio"] a:hover,
+nav[aria-label="Secciones del sitio"] a:focus-visible{
+  background: var(--light-yellow);
+  color: #1b140a;
+  outline: 2px solid transparent;
+}
 
-  /* ====== Responsive ====== */
-  /* Mobile: el menú es dropdown (oculto por defecto) */
-  @media (max-width: 900px){
-    /* Ocultar el menú por defecto con el atributo [hidden] */
-    nav[aria-label="Secciones del sitio"]{ width:100% }
-    nav[aria-label="Secciones del sitio"][data-mode="mobile"] ul{
-      position:absolute; left:0; right:0; top:calc(100% + 2px);
-      background: color-mix(in oklab, var(--cream) 92%, white 8%);
-      border-bottom:1px solid var(--light-brown);
-      box-shadow:0 10px 24px rgba(0,0,0,.06);
-      padding:.5rem; display:grid; grid-template-columns:1fr 1fr; gap:.25rem;
-      transform-origin: top center; transform:scaleY(0); opacity:0; pointer-events:none;
-    }
-    nav[aria-label="Secciones del sitio"][data-open="true"] ul{
-      transform:scaleY(1); opacity:1; pointer-events:auto;
-    }
+/* CTA del header (no hereda estilos del menú) */
+.nav-cta{
+  margin-left: auto;
+  display: inline-block;
+  padding: .6rem .9rem;
+  border-radius: .7rem;
+  background: var(--light-yellow);
+  color: #694e35;
+  font-weight: 800;
+  border: 1px solid #f4d58a;
+  text-decoration: none;                      /* ← quita subrayado */
+}
+.nav-cta:focus-visible{ outline: 3px solid #000; outline-offset: 2px }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px){
+  /* En mobile el CTA va a la derecha del brand, el menú baja en dropdown */
+  .nav{ gap: .5rem }
+  .nav-cta{ order: 3; margin-left: 0 }  /* queda al final de la fila */
+
+  nav[aria-label="Secciones del sitio"]{ width: 100% }
+  nav[aria-label="Secciones del sitio"][data-mode="mobile"] ul{
+    position: absolute; left: 0; right: 0; top: calc(100% + 2px);
+    background: color-mix(in oklab, var(--cream) 92%, white 8%);
+    border-bottom: 1px solid var(--light-brown);
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+    padding: .5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: .25rem;
+    transform-origin: top center; transform: scaleY(0);
+    opacity: 0; pointer-events: none;
+    will-change: transform, opacity;
+    transition: transform .18s ease, opacity .18s ease;
   }
-  /* Desktop: menú en línea, sin hamburguesa */
-  @media (min-width: 901px){
-    .nav-toggle{ display:none }
-    nav[aria-label="Secciones del sitio"]{ margin-left:auto; margin-right:1rem }
+  nav[aria-label="Secciones del sitio"][data-open="true"] ul{
+    transform: scaleY(1); opacity: 1; pointer-events: auto;
   }
+}
+
+@media (min-width: 901px){
+  .nav-toggle{ display: none }
+  /* En desktop: brand | menú | CTA */
+  nav[aria-label="Secciones del sitio"]{ margin-left: .25rem; }
+  .nav-cta{ margin-left: auto; }
+}
+
 </style>
 </head>
 <body>
@@ -1332,3 +1364,4 @@ html, body {
   </script>
 </body>
 </html>
+
